@@ -1,0 +1,14 @@
+{% extends "customer/customer base.html" %}
+{% block content %}
+{%load crispy_forms_filters %}
+
+
+
+<h1>CREDITCARD</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-danger">submit</button>
+
+</form>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'customer/customer base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">CUSTOMER PAYMENT DETAILS</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>SL NO.</th>
+                          <th>NAME</th>
+                          <th>BILL_DATE</th>
+                          <th>AMOUNT</th>
+                          <th></th>
+<!--                          <th>PAID_ON</th>-->
+<!--                          <th>STATUS</th>-->
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in a %}
+                        <tr>
+                          <td>{{forloop.counter}}</td>
+                          <td>{{ i.name }}</td>
+                          <td>{{ i.bill_date }}</td>
+                          <td>{{ i.amount }}</td>
+<!--                          <td>{{ a.schedule.pain_on }}</td>-->
+                          <td>
+                              {% if i.status == 0 %}
+
+                              <button type="button" class="btn btn-danger"><a href="{% url 'pay_bill' i.id %}"> 0nline Pay</a></button>
+                              <button type="button" class="btn btn-danger"><a href="{% url 'pay_in_direct' i.id %}">Pay in direct</a></button>
+
+                            {% else %}
+                        <button type="button" class="btn btn-success">bill paid</button>
+                              {% endif %}
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'customer/customer base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">payment details</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>SL NO.</th>
+                          <th>card_no</th>
+                          <th>card_cvv</th>
+                          <th>expiry_date</th>
+<!--                          <th>PAID_ON</th>-->
+                          <th>STATUS</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in a %}
+                        <tr>
+                          <td>{{forloop.counter}}</td>
+                          <td>{{ i.card_no }}</td>
+                          <td>{{ i.card_cvv }}</td>
+                          <td>{{ i.expiry_date }}</td>
+<!--                          <td>{{ a.schedule.pain_on }}</td>-->
+                          <td>
+                              {% if i.status == 0 %}
+                        <button type="button" class="btn btn-warning">payment Pending</button>
+                            <button type="button" class="btn btn-danger">pay</button>
+                            {% elif i.status == 1 %}
+                        <button type="button" class="btn btn-success">payment Confirmed</button>
+                         {% elif i.status == 2 %}
+                        <button type="button" class="btn btn-danger">pay in direct</button>
+                              {% endif %}
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
